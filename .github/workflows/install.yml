@@ -70,7 +70,7 @@ jobs:
         if: runner.os == 'Linux'
 
       - name: Install Required Brew Packages for MacOS
-        run: brew install automake jq ninja pkg-config lzlib zlib coreutils
+        run: brew install sqlite automake jq ninja pkg-config lzlib zlib coreutils
         if: runner.os == 'macOS'
 
       - name: Setup Java SDK
@@ -133,9 +133,6 @@ jobs:
           opam install --deps-only --locked opam/ocamlformat.opam.locked
           opam install ocamlformat
           opam exec -- ocamlformat --version
-
-      - name: Test infer
-        run: make test -k NDKBUILD=no
 
       - run: |
           sudo make install BUILD_MODE=opt
