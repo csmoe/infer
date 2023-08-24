@@ -851,7 +851,7 @@ else	# PLATFORM_ENV
 	set -x; \
 	for lib in $$($(LDD) $(INFER_BIN) \
 	              | cut -d ' ' -f 3 \
-	              | grep -e 'lib\(gmp\|mpfr\|sqlite\)'); do \
+	              | grep -e 'lib\(gmp\|mpfr\)'); do \
 	  $(INSTALL_PROGRAM) -C "$$lib" '$(DESTDIR)$(libdir)'/infer/infer/libso/; \
 	done
 #	update rpath of executables
@@ -872,7 +872,7 @@ ifneq ($(INSTALL_NAME_TOOL),no)
 	set -x; \
 	for lib in $$($(OTOOL) -L $(INFER_BIN) \
 	              | cut -d ' ' -f 1 | tr -d '\t' \
-	              | grep -e 'lib\(gmp\|mpfr\|sqlite\)'); do \
+	              | grep -e 'lib\(gmp\|mpfr\)'); do \
 	  $(INSTALL_PROGRAM) -C "$$lib" '$(DESTDIR)$(libdir)'/infer/infer/libso/; \
 	done
 	set -x; \
